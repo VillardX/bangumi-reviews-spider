@@ -36,42 +36,9 @@
 ## 流程
 
 - 总体
-```flow
-st=>start: 开始
-o1=>operation: 人为确定爬取范围：游戏-galgame
-o2=>operation: 换页
-c1=>condition: 是否为最后一页？
-s1=>subroutine: 爬取该页所有游戏信息
-s2=>subroutine: 爬取该页所有游戏信息
-ed=>end: 结束
-
-st->o1->o2->c1
-c1(yes)->s2->ed
-c1(no)->s1->o2->c1
-```
+![image](https://github.com/VillardX/DL_ACGN/blob/master/images/web_crawler/%E6%80%BB%E4%BD%93.jpg) 
 
 - 爬取该页所有游戏信息
-```flow
-st=>start: 开始
-o2=>operation: 换下一款游戏
-c1=>condition: 是否为该页最后一款游戏？
-s1=>subroutine: 爬取当前游戏信息
-s2=>subroutine: 爬取当前游戏信息
-ed=>end: 结束
-
-st->o2->c1
-c1(yes)->s1->ed
-c1(no)->s2->o2->c1
-```
+![image](https://github.com/VillardX/DL_ACGN/blob/master/images/web_crawler/%E7%88%AC%E5%8F%96%E8%AF%A5%E9%A1%B5%E6%89%80%E6%9C%89%E4%BF%A1%E6%81%AF.jpg)
 - 爬取当前游戏信息
-```flow
-st=>start: 开始
-s1=>subroutine: 爬取游戏id
-s2=>subroutine: 爬取概览页面信息
-s3=>subroutine: 爬取角色页面信息
-s4=>subroutine: 爬取制作人员页面信息
-s5=>subroutine: 爬取吐槽页面信息
-ed=>end: 结束
-
-st->s1->s2->s3->s4->s5->ed
-````
+![image](https://github.com/VillardX/DL_ACGN/blob/master/images/web_crawler/%E7%88%AC%E5%8F%96%E5%BD%93%E5%89%8D%E6%B8%B8%E6%88%8F%E4%BF%A1%E6%81%AF.jpg)
