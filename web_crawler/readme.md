@@ -34,8 +34,7 @@
 4. 吐槽页面
      - 得确定吐槽页面的页数
 ## 流程
-tag=type:content:url
-元素类型代表意义start开始end结束/完成operation流程操作subroutine预定子流程condition条件判断inputoutput输入输出
+
 - 总体
 ```flow
 st=>start: 开始
