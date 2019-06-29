@@ -1,5 +1,5 @@
-#爬虫结构
-##网站格式
+# 爬虫结构
+## 网站格式
 - 以游戏《素晴日》为例，该游戏页面有如下结构：
     1. 概览页面网址为：https://bangumi.tv/subject/259061
     2. 角色页面网址为：https://bangumi.tv/subject/259061/characters
@@ -14,7 +14,7 @@
 
 
 
-##爬取的内容
+## 爬取的内容
  0. 作品id（可以作为后面数据处理中每个样本的key，可从概览页面网址本身爬取） 
  1. 概览页面
     - 左侧简要信息
@@ -33,7 +33,7 @@
 ## 细节问题
 4. 吐槽页面
      - 得确定吐槽页面的页数
-##流程
+## 流程
 tag=type:content:url
 元素类型代表意义start开始end结束/完成operation流程操作subroutine预定子流程condition条件判断inputoutput输入输出
 - 总体
