@@ -1,3 +1,5 @@
+from urllib.request import urlopen
+from bs4 import BeautifulSoup
 
 class one_item:
     def __init__(self, base_html):
