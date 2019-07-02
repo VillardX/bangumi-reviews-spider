@@ -42,3 +42,27 @@
 
 ### 爬取当前游戏信息
  ![image](https://github.com/VillardX/DL_ACGN/blob/master/images/web_crawler/%E7%88%AC%E5%8F%96%E5%BD%93%E5%89%8D%E6%B8%B8%E6%88%8F%E4%BF%A1%E6%81%AF.jpg)
+ 
+ ## 原始数据的输出格式
+- 整体为一个pd.DataFrame，其结构为：
+
+|id|total|characters|persons|comments|
+|-|-|-|-|-|
+|string|list|list|list|list|
+
+如上表格所示，对于每一款产品，都是该DataFrame中的一行。各产品信息都有5个属性：
+
+- id：以字符串的形式存放该产品在bangumi中的编号
+- total：以列表的形式存放该产品的概览页面的信息，该列表中有3个元素，每个元素都是字符串，分别存放了：
+    - 左侧简要信息
+    - 中部所有tag标签
+    - 右部的评分、rank
+- characters：以列表的形式存放该产品的角色页面信息，该列表的每个元素为字符串，每个字符串存放：
+    - cv姓名
+    - 是主角还是配角
+- persons：以列表的形式存放该产品的制作人员页面信息，该列表的每个元素为字符串，每个字符串存放：
+    - 每位成员名称
+    - 担任职务
+- comments：以列表的形式存放该产品的吐槽页面信息，该列表的每个元素为字符串，每个字符串存放：
+    - 一条用户评论
+    - 该评论对应给出的评分
