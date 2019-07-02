@@ -45,7 +45,12 @@ class one_item:
         bs0bj = BeautifulSoup(html)
         
         #左侧简要信息
-        brief_info_string = ""#使用”||“分割
+        
+        #先找产品名称
+        name = bs0bj.find('a',{'property':'v:itemreviewed'}).get_text()
+        brief_info_string = "名称:" + name + "||"#使用”||“分割
+
+        #再找其他信息
         brief_info_tag = bs0bj.find('ul',{'id':'infobox'})#<ul id="infobox">的标签在该页面中只有一个，故只需要使用find函数即可
         brief_info_list = brief_info_tag.findAll('li')
         for x in brief_info_list:
