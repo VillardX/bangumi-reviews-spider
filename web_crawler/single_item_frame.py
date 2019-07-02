@@ -20,7 +20,8 @@ class one_item:
         match = re.search(r'[0-9]+', self.base_html)
         self.id = match.group(0)
         
-        self.info = {'id':self.id, 'total':self.total, 'characters':self.characters, 'persons':self.persons, 'comments':self.comments}
+        self.info ={'id':self.id, 'total':self.total, 'characters':self.characters, 'persons':self.persons, 'comments':self.comments}
+        
      
     def is_crawlable(self):
         """
@@ -161,15 +162,18 @@ class one_item:
                     together_comment = (comment_content + "|" + comment_score + "||")#整合，单条评论的内容与评分用|分割，不同评论之间用||分割
                     self.comments.append(together_comment)#加入评论数据
 
-
+                #跳页过程
                 pages_tag = present_bs0bj.find('div',{'class':'page_inner'})#可以知道有多少页评论的tag在这里
-                if ('››' in pages_tag.get_text()):#如果返回True说明当前页还有下一页
-                    #跳到下一页
-                    next_page = pages_tag.findAll(name = 'a')#返回一个列表，要在该列表中寻找下一页的连接
-                    for x in next_page:
-                        if x.get_text() == '››':#有"››"即为下一页连接
-                            present_page = initial_page + x['href']
-                else:#否则说明没有下一页
+                if (pages_tag != None):#==None时说明评论只有一页，而一页的评论是没有划页选项的
+                    if ('››' in pages_tag.get_text()):#如果返回True说明当前页还有下一页
+                        #跳到下一页
+                        next_page = pages_tag.findAll(name = 'a')#返回一个列表，要在该列表中寻找下一页的连接
+                        for x in next_page:
+                            if x.get_text() == '››':#有"››"即为下一页连接
+                                present_page = initial_page + x['href']
+                    else:#否则说明没有下一页
+                        break
+                else:#说明只有一页
                     break
+                    
 #         print(self.comments)
-        
