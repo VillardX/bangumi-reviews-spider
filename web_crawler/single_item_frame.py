@@ -19,6 +19,8 @@ class one_item:
         #先获取id
         match = re.search(r'[0-9]+', self.base_html)
         self.id = match.group(0)
+        
+        self.info = {'id':self.id, 'total':self.total, 'characters':self.characters, 'persons':self.persons, 'comments':self.comments}
      
     def is_crawlable(self):
         """
@@ -170,3 +172,4 @@ class one_item:
                 else:#否则说明没有下一页
                     break
 #         print(self.comments)
+        
