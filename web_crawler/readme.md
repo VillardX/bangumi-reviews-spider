@@ -42,6 +42,10 @@
 
 ### 爬取当前游戏信息
  ![image](https://github.com/VillardX/DL_ACGN/blob/master/images/web_crawler/%E7%88%AC%E5%8F%96%E5%BD%93%E5%89%8D%E6%B8%B8%E6%88%8F%E4%BF%A1%E6%81%AF.jpg)
+
+### 使用代码实现该流程的具体方案
+- 完成single_item_frame.py模块的编写，该模块完成功能：爬取该页所有游戏信息。
+- 在crawler_for_allgame.py或crawler_for_galgame.py中导入single_item_frame.py模块，完成全部游戏信息的爬取。
  
  ## 原始数据的输出格式
 - 整体为一个pd.DataFrame，其结构为：
