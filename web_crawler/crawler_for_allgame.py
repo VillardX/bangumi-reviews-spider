@@ -14,7 +14,10 @@ raw_data = pd.DataFrame(columns=['id','total','characters','persons','comments']
 
 #爬该页的所有信息
 
+n = 0#当前所爬产品数
+
 while True:
+    print('正在爬' + present_page)
     present_html = urlopen(present_page)
     present_bs0bj = BeautifulSoup(present_html)
     #先抓取该页上的所有游戏信息
@@ -29,6 +32,10 @@ while True:
             temp.info_persons()
             #print(temp.info)
             raw_data.loc[raw_data.shape[0]] = temp.info#添加一行，即新爬到的产品的信息
+            n += 1
+            if (n%5 == 0):#每满五条输出一次
+                print('已扫描' + str(n) + '个产品，输出一次')#输出日志
+                raw_data.to_excel('raw_data.xlsx')#原始爬取数据输出
     #判断是否为最后一页
     is_last_page = present_bs0bj.find('div',{'class':'page_inner'})
     if '››' in is_last_page.get_text():#说明还有下一页
@@ -38,4 +45,4 @@ while True:
                 present_page = start_page + x['href']
     else:#说明没有下一页
         break
-raw_data.to_excel('raw_data.xlsx')#原始爬取数据输出
+raw_data.to_excel('raw_data.xlsx')#最后爬取数据再输出一次
