@@ -7,7 +7,7 @@ import re
 
 basement = r'https://bangumi.tv'#基础网址
 start_page = r'https://bangumi.tv/game/tag/galgame'#首页网址
-present_page = r'https://bangumi.tv/game/tag/galgame?page=108'
+present_page = r'https://bangumi.tv/game/tag/galgame?page=1'#断点可以重爬，在此处设置页数
 
 raw_data = pd.DataFrame(columns=['id','total','characters','persons','comments'])#存储数据的dataframe
 
