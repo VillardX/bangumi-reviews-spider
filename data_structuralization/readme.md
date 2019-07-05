@@ -1,4 +1,4 @@
-#爬取数据结构化(structuralization)
+# 爬取数据结构化(structuralization)
 ## 原始数据的输出格式
 - 整体为一个pd.DataFrame，其结构为：
 
