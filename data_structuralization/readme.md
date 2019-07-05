@@ -33,11 +33,14 @@
     |string|list|
     
 2. 根据total的结构，将raw_data_total细化，记为total：
+
     |id|left|mid|right|
     |-|-|-|-|
     |string|string|string|string|
+    
     其中，属性left、mid、right分别表示左侧简要信息、中部tag标签、右侧评分与rank
 3. 对total取三份切片，分别记为total_left、total_mid、total_right：
+
     |id|left|
     |-|-|
     |string|string|
@@ -49,12 +52,14 @@
     |id|right|
     |-|-|
     |string|string|
+    
     接下来对这三份切片分别作处理。
 4. - 对total_left，记其处理后输出的数据集名为total_brief：
         1. 根据爬取数据时事先规定好的分割符，对属性left的内容进行分割。分割所得的每一单元对应该产品的一条基本信息。
         2. 根据基本信息的类别创建新的属性，再在该属性下填入该款产品对应基本信息的内容。
         - e.g.
             以如下信息为例演示处理方式：
+            
             |id|left|
             |-|-|
             |XXXX|'名称:WHITE ALBUM2 -closing chapter-\|\|中文名: 白色相簿2 终章\|\|平台: PC\|\|游戏类型: AVG\|\|发行日期: 2011/12/22\|\|'|
@@ -66,3 +71,4 @@
                 |id|名称|中文名|平台|游戏类型|发行日期|
                 |-|-|-|-|-|-|
                 |XXXX|WHITE ALBUM2 -closing chapter-|白色相簿2 终章|PC|AVG|2011/12/22|
+
