@@ -27,9 +27,11 @@
 - 不做处理
 ### 属性total
 1. 作原始数据的切片，记为raw_data_total：
+
     |id|total|
     |-|-|
     |string|list|
+    
 2. 根据total的结构，将raw_data_total细化，记为total：
     |id|left|mid|right|
     |-|-|-|-|
