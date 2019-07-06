@@ -2,9 +2,9 @@
 ## 原始数据的输出格式
 - 整体为一个pd.DataFrame，其结构为：
 
-|id|total|characters|persons|comments|
-|-|-|-|-|-|
-|string|list|list|list|list|
+    |id|total|characters|persons|comments|
+    |-|-|-|-|-|
+    |string|list|list|list|list|
 
 如上表格所示，对于每一款产品，都是该DataFrame中的一行。各产品信息都有5个属性：
 
