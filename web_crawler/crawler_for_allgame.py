@@ -26,8 +26,16 @@ already_item_id = list(already_item_id)
 #爬取该页所有信息
 while True:
     print('正在爬' + present_page)
-    present_html = urlopen(present_page)
-    present_bs0bj = BeautifulSoup(present_html)
+
+    #设置超时(timeout)重新请求
+    for times in range(50):#默认最多重新请求50次，并假定50次内必定请求成功
+        try:
+            present_html = urlopen(present_page,timeout = 5)#设置timeout
+            present_bs0bj = BeautifulSoup(present_html)
+            break
+        except:
+            print('请求页面时，网址:\t'+ present_page + '\t超时\n再尝试一次，已累计尝试' + str(times + 1) + '次')#出错输出
+
     #先抓取该页上的所有游戏信息
     items_list = present_bs0bj.find('ul',{'id':"browserItemList",'class':"browserFull"}).findAll('a',{'class':'subjectCover cover ll'})#包含了该页面的所有游戏
     for each_item in items_list:
