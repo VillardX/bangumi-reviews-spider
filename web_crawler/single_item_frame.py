@@ -20,7 +20,6 @@ class one_item:
         match = re.search(r'[0-9]+', self.base_html)
         self.id = match.group(0)
         
-        #self.info是每款产品所有信息的整合，之后原始数据的保存与输出都将使用该数据结构
         self.info ={'id':self.id, 'total':self.total, 'characters':self.characters, 'persons':self.persons, 'comments':self.comments}
         
      
@@ -28,8 +27,16 @@ class one_item:
         """
             确认是否可爬
         """
-        html = urlopen(self.base_html)
-        bs0bj = BeautifulSoup(html)
+        #设置超时(timeout)重新请求
+        for times in range(50):#默认最多重新请求50次，并假定50次内必定请求成功
+            try:
+                html = urlopen(self.base_html, timeout = 5)#设置timeout
+                bs0bj = BeautifulSoup(html)
+                break
+            except:
+                print('在检测是否可爬时，请求网址:\t'+ self.base_html + '\t超时\n再尝试一次，已累计尝试' + str(times + 1) + '次')#出错输出
+        
+
         if len(bs0bj.findAll('img',{'src':r'/img/bangumi/404.png', 'class':'ll'})) != 0:#如果有该页面信息，则说明不可爬
             print(self.id + "页面信息不存在")
             return False
@@ -42,8 +49,15 @@ class one_item:
         """
             获取概览页面信息
         """
-        html = urlopen(self.base_html)
-        bs0bj = BeautifulSoup(html)
+        #设置超时(timeout)重新请求
+        for times in range(50):#默认最多重新请求50次，并假定50次内必定请求成功
+            try:
+                html = urlopen(self.base_html, timeout = 5)#设置timeout
+                bs0bj = BeautifulSoup(html)
+                break
+            except:
+                print('在获取产品概览信息时，请求网址:\t'+ self.base_html + '\t超时\n再尝试一次，已累计尝试' + str(times + 1) + '次')#出错输出
+        
         
         #左侧简要信息
         
@@ -91,8 +105,19 @@ class one_item:
             获取角色页面信息
         """
         suffix = r'/characters'#角色信息页面后缀名
-        html = urlopen(self.base_html + suffix)
-        bs0bj = BeautifulSoup(html)
+        characters_URL = self.base_html + suffix
+
+        #设置超时(timeout)重新请求
+        for times in range(50):#默认最多重新请求50次，并假定50次内必定请求成功
+            try:
+                html = urlopen(characters_URL, timeout = 5)#设置timeout
+                bs0bj = BeautifulSoup(html)
+                break
+            except:
+                print('在获取产品角色信息时，请求网址:\t'+ characters_URL + '\t超时\n再尝试一次，已累计尝试' + str(times + 1) + '次')#出错输出
+        
+        
+        #开始查找
         character_info_tag = bs0bj.find('div',{'class':'column','id':'columnInSubjectA'})
         #查空
         if len(character_info_tag.contents) != 0:
@@ -114,8 +139,18 @@ class one_item:
             获取制作人员信息
         """
         suffix = r'/persons'#制作人员后缀名
-        html = urlopen(self.base_html + suffix)
-        bs0bj = BeautifulSoup(html)
+        persons_URL = self.base_html + suffix
+        #设置超时(timeout)重新请求
+        for times in range(50):#默认最多重新请求50次，并假定50次内必定请求成功
+            try:
+                html = urlopen(persons_URL, timeout = 5)#设置timeout
+                bs0bj = BeautifulSoup(html)
+                break
+            except:
+                print('在获取产品制作人员信息时，请求网址:\t'+ characters_URL + '\t超时\n再尝试一次，已累计尝试' + str(times + 1) + '次')#出错输出
+        
+
+        #开始查找
         persons_info_tag = bs0bj.find('div',{'id':'columnInSubjectA','class':'column'})#包含所有工作人员及其任务的tag
         #查空
         if len(persons_info_tag.contents) != 0:
@@ -140,21 +175,29 @@ class one_item:
         
         initial_page = self.base_html + suffix#初始页面
         present_page = self.base_html + suffix#当前页面
-        
-        present_html = urlopen(present_page)
-        present_bs0bj = BeautifulSoup(present_html)
 
+        for times in range(50):
+            try:
+                present_html = urlopen(present_page,timeout = 5)#设置timeout
+                present_bs0bj = BeautifulSoup(present_html)
+                break
+            except:
+                print('在获取产品评论信息时，请求网址:\t'+ present_page + '\t超时\n再尝试一次，已累计尝试' + str(times + 1) + '次')#出错输出
+        
+
+        #开始查找
         #查空
         if len(present_bs0bj.find('div',{'id':'comment_box'}).contents) != 0:#所有得子节点用列表返回，无子节点代表列表长度为0#说明有子项，说明有评论
             #爬取当前页面内容+换页
             while True:
-                present_html = urlopen(present_page)
-                present_bs0bj = BeautifulSoup(present_html)
-
-                #爬取评论
-                present_html = urlopen(present_page)
-                present_bs0bj = BeautifulSoup(present_html)
-
+                for times in range(50):
+                    try:
+                        present_html = urlopen(present_page,timeout = 5)#设置timeout
+                        present_bs0bj = BeautifulSoup(present_html)
+                        break
+                    except:
+                        print('在获取产品评论信息时，请求网址:\t'+ present_page + '\t超时\n再尝试一次，已累计尝试' + str(times + 1) + '次')#出错输出
+                        #
                 total_comment_tag = present_bs0bj.find('div',{'id':'comment_box'})#包含了每页所有评论的总tag
                 comment_list_tag = total_comment_tag.findAll('div',{'class':'text'})#该列表中包含了每条评论及其评分
                 for each_comment in comment_list_tag:
@@ -176,7 +219,7 @@ class one_item:
                         next_page = pages_tag.findAll(name = 'a')#返回一个列表，要在该列表中寻找下一页的连接
                         for x in next_page:
                             if x.get_text() == '››':#有"››"即为下一页连接
-                                present_page = initial_page + x['href']
+                                present_page = initial_page + x['href']         
                     else:#否则说明没有下一页
                         break
                 else:#说明只有一页
