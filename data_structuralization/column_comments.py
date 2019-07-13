@@ -40,4 +40,7 @@ for row_num in range(raw_data_comments.shape[0]):
                     comment_NO += 1#编号+1
     n += 1#处理完一款产品数据
     if n % 500 == 0:#每处理完500款产品进行报告
-        print('已处理\t' + str(n) + '款产品') 
+        print('已处理\t' + str(n) + '款产品')
+        
+comments_tsukkomi =  comments_tsukkomi.drop_duplicates()#去重
+comments_tsukkomi.to_excel('comments_tsukkomi.xlsx')#输出   
