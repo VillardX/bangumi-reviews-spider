@@ -147,7 +147,7 @@ class one_item:
                 bs0bj = BeautifulSoup(html)
                 break
             except:
-                print('在获取产品制作人员信息时，请求网址:\t'+ characters_URL + '\t超时\n再尝试一次，已累计尝试' + str(times + 1) + '次')#出错输出
+                print('在获取产品制作人员信息时，请求网址:\t'+ persons_URL + '\t超时\n再尝试一次，已累计尝试' + str(times + 1) + '次')#出错输出
         
 
         #开始查找
@@ -199,8 +199,11 @@ class one_item:
                         print('在获取产品评论信息时，请求网址:\t'+ present_page + '\t超时\n再尝试一次，已累计尝试' + str(times + 1) + '次')#出错输出
                         #
                 total_comment_tag = present_bs0bj.find('div',{'id':'comment_box'})#包含了每页所有评论的总tag
-                comment_list_tag = total_comment_tag.findAll('div',{'class':'text'})#该列表中包含了每条评论及其评分
+                comment_list_tag = total_comment_tag.findAll('div',{'class':'text'})#该列表中包含了每条评论及其评分,以及评论用户名及评论时间
+
                 for each_comment in comment_list_tag:
+                    comment_user_id = each_comment.find('a').get_text()#每条评论的用户名
+                    comment_time = each_comment.find('small').get_text()#每条评论的评论时间
                     comment_content = each_comment.find('p').get_text()#每条评论的内容
                     #每条评论对应的评分，分两种情况：一种是有评分的，一种是没有评分的
                     is_score = each_comment.find('span')#是否有评分的标记,如果没有，is_score返回None
@@ -208,7 +211,7 @@ class one_item:
                         comment_score = 'sstars99'#没有评分的记为99星方便后面数值化处理
                     else:#说明有评分
                         comment_score = each_comment.find('span')['class'][0]#每条评论对应的评分
-                    together_comment = (comment_content + "|" + comment_score + "||")#整合，单条评论的内容与评分用|分割，不同评论之间用||分割
+                    together_comment = (comment_user_id + '|' + comment_time + '|' + comment_content + "|" + comment_score)#整合，单条评论的内容与评分用|分割，不同评论之间用||分割
                     self.comments.append(together_comment)#加入评论数据
 
                 #跳页过程
