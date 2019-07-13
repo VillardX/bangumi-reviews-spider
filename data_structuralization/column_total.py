@@ -45,7 +45,8 @@ for row_num in range(total_left.shape[0]):#遍历total_left的每一行数据
     n += 1#处理完一款产品数据
     if n % 100 == 0:#每处理完100款产品进行报告
         print('已处理\t' + str(n) + '款产品')    
-
+total_brief = total_brief.drop_duplicates()#去重
+total_brief.to_excel('total_brief.xlsx')#输出        
 
 #处理total_mid
 n = 0#计数器
@@ -71,7 +72,8 @@ for row_num in range(total_mid.shape[0]):#遍历total_mid的每一行数据
     n += 1#处理完一款产品数据
     if n % 100 == 0:#每处理完100款产品进行报告
         print('已处理\t' + str(n) + '款产品') 
-
+total_tag = total_tag.drop_duplicates()#去重
+total_tag.to_excel('total_tag.xlsx')#输出
 
 #处理total_right
 n = 0#计数器
@@ -95,3 +97,5 @@ for row_num in range(total_right.shape[0]):#遍历total_right的每一行数据
     n += 1#处理完一款产品数据
     if n % 100 == 0:#每处理完100款产品进行报告
         print('已处理\t' + str(n) + '款产品')
+total_rank = total_rank.drop_duplicates()#去重
+total_rank.to_excel('total_rank.xlsx')#输出  
