@@ -32,3 +32,7 @@ for row_num in range(raw_data_characters.shape[0]):
     n += 1#处理完一款产品数据
     if n % 500 == 0:#每处理完500款产品进行报告
         print('已处理\t' + str(n) + '款产品') 
+        
+characters_voice = characters_voice.drop_duplicates()#去重
+
+characters_voice.to_excel('characters_voice.xlsx')#输出        
