@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*- 
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 import re
@@ -82,7 +83,7 @@ class one_item:
             mid_info_list = mid_info_tag_LV2.findAll('a')
             for x in mid_info_list:#贴的标签名称与所贴标签人数
                 mid_info_string += (x.get_text() + '||')
-            self.total.append(mid_info_string)
+        self.total.append(mid_info_string)
 #         print(mid_info_string)
 
         #右部的评分、rank
