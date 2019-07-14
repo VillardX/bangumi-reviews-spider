@@ -1,3 +1,4 @@
+#-*- coding: UTF-8 -*- 
 #爬取bangumi上所有游戏的信息
 import single_item_frame as sif
 from urllib.request import urlopen
