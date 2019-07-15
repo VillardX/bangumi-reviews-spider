@@ -1,9 +1,9 @@
 import pandas as pd
 from ast import literal_eval
 import re
-path = r'D:\pycode\ACGN\raw_data_all.xlsx'
+path = r'D:\pycode\ACGN\raw_data.txt'
 
-raw_data = pd.read_excel(path)
+raw_data = pd.read_csv(path, encoding='utf-8',index_col=0)
 
 #处理raw_data_characters
 
@@ -25,14 +25,14 @@ for row_num in range(raw_data_characters.shape[0]):
             #print('id' + temp_id + '无具体信息，故跳过')
         else:#说明有内容
             for each_character in temp_characters:#遍历
-                CV_name = each_character.split("|")[1].strip()#声优名
+                CV_name = each_character.split("|-*-|")[1].strip()#声优名
                 if CV_name != '-':#说明CV名非空
-                    characters_type = each_character.split("|")[0].strip()#所配音角色类型
+                    characters_type = each_character.split("|-*-|")[0].strip()#所配音角色类型
                     characters_voice.loc[characters_voice.shape[0]] = [temp_id,CV_name,characters_type]#填入信息
     n += 1#处理完一款产品数据
-    if n % 500 == 0:#每处理完500款产品进行报告
+    if n % 1000 == 0:#每处理完1000款产品进行报告
         print('已处理\t' + str(n) + '款产品') 
         
 characters_voice = characters_voice.drop_duplicates()#去重
-
-characters_voice.to_excel('characters_voice.xlsx')#输出        
+#characters_voice.to_excel('characters_voice.xlsx',index=False)#输出
+characters_voice.to_csv('characters_voice.csv',encoding = 'utf-8', index=False)#输出
