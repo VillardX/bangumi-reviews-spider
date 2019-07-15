@@ -45,7 +45,7 @@
 
 ### 使用代码实现该流程的具体方案
 - 完成single_item_frame.py模块的编写，该模块完成功能：爬取该页所有游戏信息。
-- 在crawler_for_allgame.py或crawler_for_galgame.py中导入single_item_frame.py模块，完成全部游戏信息的爬取。
+- 在crawler_for_allgame.py中导入single_item_frame.py模块，完成全部游戏信息的爬取。
  
  ## 原始数据的输出格式
 - 整体为一个pd.DataFrame，其结构为：
@@ -68,5 +68,7 @@
     - 每位成员名称
     - 担任职务
 - comments：以列表的形式存放该产品的吐槽页面信息，该列表的每个元素为字符串，每个字符串存放：
-    - 一条用户评论
-    - 该评论对应给出的评分
+    - 每条评论的用户id
+    - 每条评论的评论时间
+    - 每条评论的内容
+    - 每条评论给出的产品评分
