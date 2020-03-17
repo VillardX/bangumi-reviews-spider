@@ -48,27 +48,75 @@
 
  
  ## 原始数据的输出格式
-- 整体为一个pd.DataFrame，其结构为：
+一共有六个pd.DataFrame。
+- 1.表raw_data_total_left：
 
-|id|total|characters|persons|comments|
+|game_id|attr|thing|
+|-|-|-|
+|int|string|string|
+
+- 字段解释：
+    - game_id：以字符串的形式存放该产品在bangumi中的编号
+    - attr：基本信息类别
+    - thing：信息内容
+
+- 2.表raw_data_total_mid：
+
+|game_id|tag_name|tag_num|
+|-|-|-|
+|int|string|int|
+
+- 字段解释：
+    - game_id：以字符串的形式存放该产品在bangumi中的编号
+    - attr：tag标签名称
+    - thing：标记该标签的人数
+
+- 3.表raw_data_total_right：
+
+|game_id|score|rank|
+|-|-|-|
+|int|float|int|
+
+- 字段解释：
+    - game_id：以字符串的形式存放该产品在bangumi中的编号
+    - score：该产品的总体评分
+    - thing：该产品的排名
+
+- 4.表raw_data_persons：
+
+|game_id|person_id|work|name|other_name|
 |-|-|-|-|-|
-|string|list|list|list|list|
+|int|int|string|string|string|
 
-如上表格所示，对于每一款产品，都是该DataFrame中的一行。各产品信息都有5个属性：
+- 字段解释：
+    - game_id：以字符串的形式存放该产品在bangumi中的编号
+    - person_id：该工作人员在bangumi中的编号
+    - work：该工作人员所担任的工作
+    - name：该工作人员的原名
+    - other_name：该工作人员的中文名
 
-- id：以字符串的形式存放该产品在bangumi中的编号
-- total：以列表的形式存放该产品的概览页面的信息，该列表中有3个元素，每个元素都是字符串，分别存放了：
-    - 左侧简要信息
-    - 中部所有tag标签
-    - 右部的评分、rank
-- characters：以列表的形式存放该产品的角色页面信息，该列表的每个元素为字符串，每个字符串存放：
-    - cv姓名
-    - 是主角还是配角
-- persons：以列表的形式存放该产品的制作人员页面信息，该列表的每个元素为字符串，每个字符串存放：
-    - 每位成员名称
-    - 担任职务
-- comments：以列表的形式存放该产品的吐槽页面信息，该列表的每个元素为字符串，每个字符串存放：
-    - 每条评论的用户id
-    - 每条评论的评论时间
-    - 每条评论的内容
-    - 每条评论给出的产品评分
+- 5.表raw_data_characters：
+
+|game_id|cv_id|character_type|name|other_name|
+|-|-|-|-|-|
+|int|int|string|string|string|
+
+- 字段解释：
+    - game_id：以字符串的形式存放该产品在bangumi中的编号
+    - cv_id：该配音人员在bangumi中的编号
+    - work：该配音人员担任的角色为主角还是配角
+    - name：该配音人员的原名
+    - other_name：该配音人员的中文名
+
+- 6.表raw_data_comments：
+
+|game_id|user_id|issue_time|user_score|content|
+|-|-|-|-|-|
+|int|string|date|int|string|
+
+- 字段解释：
+    - game_id：以字符串的形式存放该产品在bangumi中的编号
+    - user_id：该用户在bangumi中的编号
+    - issue_time：评论时间
+    - user_score：用户评分
+    - content：评论内容
