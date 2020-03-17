@@ -4,8 +4,8 @@
  - 数据爬取（于web_crawler文件夹中）
  - 数据结构化（于data_structuralization文件夹中）
 
-#爬虫结构
-##网站格式
+# 爬虫结构
+## 网站格式
 - 以游戏《素晴日》为例，该游戏页面有如下结构：
     1. 概览页面网址为：https://bangumi.tv/subject/259061
     2. 角色页面网址为：https://bangumi.tv/subject/259061/characters
@@ -18,7 +18,7 @@
     4. 吐槽页面网址为： https://bangumi.tv/subject/XXXXXX/comments
 其中XXXXXX为每一部作品的id
 
-##爬取内容
+## 爬取内容
  1. 概览页面
     - 左侧简要信息
     - 中部所有tag标签及各标签的标记人数
