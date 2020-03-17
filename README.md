@@ -4,7 +4,7 @@
  - 数据爬取（于web_crawler文件夹中）
  - 数据结构化（于data_structuralization文件夹中）
 
-# 爬虫结构
+# 一、爬虫结构
 ## 网站格式
 - 以游戏《素晴日》为例，该游戏页面有如下结构：
     1. 概览页面网址为：https://bangumi.tv/subject/259061
