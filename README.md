@@ -16,7 +16,7 @@
     2. 角色页面网址为：https://bangumi.tv/subject/XXXXXX/characters
     3. 制作人员页面网址为: https://bangumi.tv/subject/XXXXXX/persons
     4. 吐槽页面网址为： https://bangumi.tv/subject/XXXXXX/comments
-其中XXXXXX为每一部作品的id
+\n其中XXXXXX为每一部作品的id
 
 ## 爬取内容
  1. 概览页面
