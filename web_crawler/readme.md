@@ -120,3 +120,8 @@
     - issue_time：评论时间
     - user_score：用户评分
     - content：评论内容
+
+ ## 数据输出
+   所得数据以打包输出至：
+   https://github.com/VillardX/bangumi-reviews-spider/blob/master/web_crawler/raw_data.rar
+   如有需要，可自行下载。
