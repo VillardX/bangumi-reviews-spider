@@ -10,27 +10,26 @@
     2. 角色页面网址为：https://bangumi.tv/subject/XXXXXX/characters
     3. 制作人员页面网址为: https://bangumi.tv/subject/XXXXXX/persons
     4. 吐槽页面网址为： https://bangumi.tv/subject/XXXXXX/comments
-其中XXXXXX为每一部作品的id
+    <br/>注：其中XXXXXX为每一部作品的id
 
-
-
-## 爬取的内容
- 0. 作品id（可以作为后面数据处理中每个样本的key，可从概览页面网址本身爬取） 
+## 爬取内容
  1. 概览页面
     - 左侧简要信息
-    - 中部所有tag标签
+    - 中部所有tag标签及各标签的标记人数
     - 右部的评分、rank
  2. 角色页面
-    - cv姓名
+    - cv原文姓名
+    - cv中文姓名
     - 是主角还是配角
  3. 制作人员页面
-    - 每位成员名称
-    - 担任职务（可能有一人多职的存在）
-4. 吐槽页面（评论）
-    - 爬取每条评论的用户id
-    - 爬取每条评论的评论时间
-    - 爬取每条评论的内容
-    - 爬取每条评论给出的产品评分
+    - 每位成员原文名称
+    - 每位成员中文名称
+    - 该成员担任的职务
+4. 吐槽页面
+    - 评论用户的id
+    - 评论时间
+    - 用户评分
+    - 评论内容
 
 ## 流程
 
@@ -44,8 +43,9 @@
  ![image](https://github.com/VillardX/DL_ACGN/blob/master/images/web_crawler/%E7%88%AC%E5%8F%96%E5%BD%93%E5%89%8D%E6%B8%B8%E6%88%8F%E4%BF%A1%E6%81%AF.jpg)
 
 ### 使用代码实现该流程的具体方案
-- 完成single_item_frame.py模块的编写，该模块完成功能：爬取该页所有游戏信息。
-- 在crawler_for_allgame.py中导入single_item_frame.py模块，完成全部游戏信息的爬取。
+- single_item_frame.py模块：爬取单款游戏的所有信息。
+- 而后在crawler_for_allgame.py中导入single_item_frame.py模块，完成全部游戏信息的爬取。
+
  
  ## 原始数据的输出格式
 - 整体为一个pd.DataFrame，其结构为：
